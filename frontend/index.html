@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Imperial - Portal de Reservas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <style>
+        /* Centraliza o H1 (Req. #1) */
+        h1 { text-align: center; }
+
+        /* Remove o hover branco dos articles (Req. #2) */
+        article:hover { background: inherit; cursor: default; }
+
+        /* Estilo para a linha da tabela selecionada */
+        .selected-row { background-color: #e0f7fa !important; cursor: pointer !important; }
+        tbody tr:hover { cursor: pointer; background-color: #f9f9f9; }
+
+        /* Estilo para as mensagens de log (Req. #12) */
+        .log-msg {
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .log-success { background-color: #e8f5e9; color: #1b5e20; }
+        .log-error { background-color: #ffebee; color: #c62828; }
+
+        /* Esconde elementos */
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="container">
+
+    <main>
+        <h1>Hotel Imperial</h1>
+
+        <section id="secao-login">
+            <details open>
+                <summary role="button" class="outline">1. Fazer Login</summary>
+                <article>
+                    <form id="form-login">
+                        <input type="email" id="login-email" placeholder="Email" required>
+                        <input type="password" id="login-senha" placeholder="Senha" required>
+                        <button type="submit">Login</button>
+                        <div id="log-login" class="log-msg hidden"></div>
+                    </form>
+                </article>
+            </details>
+            
+            <details>
+                <summary role="button" class="outline">2. Registar Novo Utilizador</summary>
+                <article>
+                    <form id="form-registrar">
+                        <input type="text" id="reg-nome" placeholder="Nome" required>
+                        <input type="email" id="reg-email" placeholder="Email" required>
+                        <input type="password" id="reg-senha" placeholder="Senha" required>
+                        <input type="text" id="reg-telefone" placeholder="Telefone (opcional)">
+                        <button type="submit">Registar</button>
+                        <div id="log-registrar" class="log-msg hidden"></div>
+                    </form>
+                </article>
+            </details>
+        </section>
+
+        <section id="secao-app" class="hidden">
+            
+            <h2 id="bem-vindo-msg"></h2>
+            <hr>
+
+            <h3>3. Quartos Disponíveis</h3>
+            <p>Clique no quarto que deseja reservar.</p>
+            <figure>
+                <table id="tabela-quartos">
+                    <thead>
+                        <tr>
+                            <th>Quarto Nº</th>
+                            <th>Tipo</th>
+                            <th>Capacidade</th>
+                            <th>Preço/Noite</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-quartos-tbody">
+                        </tbody>
+                </table>
+            </figure>
+
+
+            <h3>4. Selecione as Datas</h3>
+            <form id="form-reserva">
+                <input type="text" id="quarto-selecionado-info" placeholder="Nenhum quarto selecionado..." readonly>
+                <div class="grid">
+                    <input type="date" id="res-checkin" placeholder="Data de Check-in" required>
+                    <input type="date" id="res-checkout" placeholder="Data de Check-out" required>
+                </div>
+                <button type="submit">Confirmar Reserva</button>
+                <div id="log-reserva" class="log-msg hidden"></div>
+            </form>
+
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
